@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adarsh Blogs</title>
+        <style media="screen">
+          .baseheader{
+            display: inline;
+          }
+        </style>
+    </head>
+    <body>
+        <div class="baseheader">
+          <a style="font-size:300%; margin-right:50px;" href="{% url 'home' %}">Blogs</a>
+          <a style="font-size:200%; color:green;" href="{% url 'about' %}">About</a>
+        </div>
+        {% block content %}
+        <!-- Content Goes here -->
+        {% endblock content %}
+        <!-- Footer -->
+        <footer class="py-3 bg-grey">
+            <p class="m-0 text-dark text-center ">Copyright &copy; Adarsh Tyagi</p>
+        </footer>
+    </body>
+</html>

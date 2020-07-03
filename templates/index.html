@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header>
+    <div>
+        <h3> Welcome to my Python Blogs.</h3>
+    </div>
+</header>
+<div>
+        <!-- Blog Entries Column -->
+            {% for post in post_list %}
+            <div>
+                    <h2 style="color: rgb(150,50,2);">{{ post.title }}</h2>
+                    <p style="color: rgb(0, 50, 200);"><i>{{ post.author }} | {{ post.created_on}}</i></p>
+                    <p>{{post.content|slice:":200" }}</p>
+                    <a href="{% url 'post_detail' post.slug  %}">Read More &rarr;</a>
+            </div>
+            {% endfor %}
+</div>
+<div>
+  {% if is_paginated %}
+    <ul>
+      {% if page_obj.has_previous %}
+        <li><a href="?page={{page_obj.previous_page_number}}">&laquo; PREV</a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+        <li><a href="?page={{page_obj.next_page_number}}">NEXT &raquo</a></li>
+      {% endif %}
+    </ul>
+   {% endif %}
+</div>
+{%endblock%}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="post-header">
+    <h1 style="color: rgb(150,50,2);">{% block title %} {{ post.title }} {% endblock title %}</h1>
+    <p style="color: rgb(0, 50, 200);"><i>{{ post.author }} | {{ post.created_on }}</i></p>
+    <p>{{ post.content | safe }}</p>
+
+<!--- comments --->
+<div>
+  <h3>{{comments.count}} comments</h3>
+  {% for comment in comments %}
+      <b>{{comment.name}}</b>
+      <p><i>{{comment.created_on}}</i></p>
+      <p>{{comment.body | linebreaks}}</p>
+      <p>--------</p>
+  {% endfor %}
+</div>
+<div >
+  {% if new_comment %}
+      <div class="">Your Comment is awaiting moderation</div>
+  {% else %}
+      <h4>Leave a comment</h4>
+      <form method="post">
+        {{comment_form.as_p}}
+        {% csrf_token %}
+        <button type="submit">Post Comment</button>
+      </form>
+  {% endif %}
+</div>
+</div>
+
+{% endblock content %}
